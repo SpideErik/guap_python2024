@@ -12,9 +12,9 @@ clock = ['8 1 2\n',
 
 
 def print_clock(n):
-    c = clock.copy()
-    c[pos[n]] = arrow[n]
-    print(''.join(c))
+    clock[pos[n]] = arrow[n]
+    print(''.join(clock))
+    clock[pos[n]] = ' '
 
 
 while True:
