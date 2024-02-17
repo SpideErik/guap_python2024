@@ -3,7 +3,7 @@ available = ['бананы', 'сосиски', 'колбаса', 'огурцы',
 
 
 def check_available(name: str):
-    if name in available:
+    if name.lower() in available:
         return True
     print(f'{name} не продается!')
     return False
