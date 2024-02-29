@@ -31,11 +31,13 @@ def fill_random(field):
 f = make_field()
 print_field(f)
 
-y = sample(range(10), 3)
-
 for i in range(3):
-    x = randint(0, 7-i)
-    f[y[i]][x:x+3+i] = choice(words[3+i])
+    while True:
+        x = randint(0, 7-i)
+        y = randint(0, 9)
+        if f[y][x:x+3+i] == ['_']*(3+i):
+            f[y][x:x+3+i] = choice(words[3+i])
+            break
 
 print_field(f)
 
