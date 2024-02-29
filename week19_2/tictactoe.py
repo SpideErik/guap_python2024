@@ -1,80 +1,86 @@
-from random import randint
+from random import choice
 
 
-field = []
-size = 0
-
-
-def make_field():
-    global field, size
-    field = [[' ']*size for _ in range(size)]
+field = [' ']*9
+possible = list(range(9))  # возможные ходы для случайного выбора
 
 
 def print_field():
-    print('  '+' '.join(str(i) for i in range(1, size+1)))
-    for y in range(size):
-        print(f'{y+1} {" ".join(field[y])}')
+    print('  123')
+    for y in range(3):
+        print(f'{y+1} {"".join(field[y*3:y*3+3])}')
 
 
-def move(x, y, sym):
-    global field, size
-    x -= 1
-    y -= 1
-    if field[y][x] == ' ':
-        field[y][x] = sym
-        print('Ход сделан')
-        return True
-    print('Клетка занята')
-    return False
+def move(n, sym):
+    global field
+    if n not in possible:
+        print('Клетка занята')
+        return False
+    possible.remove(n)
+    field[n] = sym
+    print(f'Ход сделан: {sym} -> {n % 3 + 1},{n // 3 + 1}')
+    return True
+
+
+# номера ячеек поля
+# 012
+# 345
+# 678
+win_row = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
 
 
 def check_win():
-    global field, size
-    for y in range(size):
-        for x in range(size):
-            if y < size - 2:
-                s = field[y][x] + field[y+1][x] + field[y+2][x]
-                if s == 'XXX' or s == 'OOO':
-                    return s
-            if x < size - 2:
-                s = field[y][x] + field[y][x+1] + field[y][x+2]
-                if s == 'XXX' or s == 'OOO':
-                    return s
-            if y < size - 2 and x < size - 2:
-                s = field[y][x] + field[y+1][x+1] + field[y+2][x+2]
-                if s == 'XXX' or s == 'OOO':
-                    return s
-            if y < size - 2 and x > 1:
-                s = field[y][x] + field[y+1][x-1] + field[y+2][x-2]
-                if s == 'XXX' or s == 'OOO':
-                    return s
+    for i in win_row:
+        s = ''.join(field[j] for j in i)
+        if s == 'XXX':
+            return 'X'
+        if s == 'OOO':
+            return 'O'
+    return None
 
 
 def random_move(sym):
+    move(choice(possible), sym)
+
+
+def user_move(sym):
     while True:
-        x = randint(1, size)
-        y = randint(1, size)
-        if move(x, y, sym):
-            break
+        s = input('Ваш ход(yx)>')
+        if len(s) == 2 and s.isnumeric() and 0 < int(s[0]) < 4 and 0 < int(s[0]) < 4:
+            x = int(s[1])
+            y = int(s[0])
+            if move((y-1)*3 + (x-1), sym):
+                return
 
 
-size = 5
-make_field()
+names = {'1': ('случайный ход', random_move), '2': ('пользователь', user_move)}
+players = [user_move, user_move]
+symbols = ['X', 'O']
+
+
+def ask_players():
+    global players
+    for i in names:
+        print(f'{i}: {names[i][0]}')
+    for i in range(2):
+        s = input(f'Кто будет играть за {symbols[i]}>')
+        players[i] = names[s][1]
+
+
+ask_players()
 n = 0
+order = 0
 print_field()
-while n < size*size:
-    random_move('X')
+win = None
+while n < 9:
+    players[order](symbols[order])
     print_field()
     win = check_win()
     if win:
         break
     n += 1
-    if n >= size*size:
-        break
-    random_move('O')
-    print_field()
-    win = check_win()
-    if win:
-        break
-    n += 1
-print(win)
+    order ^= 1
+if win:
+    print('Выйграли', win)
+else:
+    print('Ничья')
