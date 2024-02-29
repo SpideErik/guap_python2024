@@ -3,13 +3,19 @@ print(names)
 
 #  т.к. нельзя изменять словарь в цикле если он используется как итератор
 #  будем запускать итерацию заново при каждом удалении
-while True:
-    for i in names:
-        if i % 2 == 0:
-            val = names.pop(i)
-            print(f'Запись удалена: {i} - {val}.')
-            break
-    else:
-        break
+# while True:
+#     for i in names:
+#         if i % 2 == 0:
+#             val = names.pop(i)
+#             print(f'Запись удалена: {i} - {val}.')
+#             break
+#     else:
+#         break
+
+for i in tuple(names.keys()):
+    if i % 2 == 0:
+        val = names.pop(i)
+        print(f'Запись удалена: {i} - {val}.')
+
 
 print(names)
