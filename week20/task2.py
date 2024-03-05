@@ -1,10 +1,10 @@
 from collections import Counter
-from random import choice
+from random import choices
 
 
 names_init = ['Ян', 'Аня', 'Витя', 'Игорь', 'Богдан']
 
-names = [choice(names_init) for _ in range(50)]
+names = choices(names_init, k=50)
 cnt = Counter(names)
 
 print(cnt)
