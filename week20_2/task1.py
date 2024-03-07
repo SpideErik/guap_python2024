@@ -8,9 +8,9 @@ s = input('Предложение>')
 if len(s) <= 10:
     raise ValueError('Слишком короткое предложение')
 
-words = s.lower().split()
+words = s.split()
 for i, word in enumerate(words):
-    if word in ban_list:
+    if word.lower() in ban_list:
         words[i] = 'пииииюююю'
 
 print(' '.join(words))
