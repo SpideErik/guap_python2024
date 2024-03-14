@@ -3,7 +3,6 @@ from collections import Counter
 
 # s = input('Введите строку>').lower()
 s = 'Проверка работы программы. 123. Всё хорошо! Наверно...Ъь'.lower()
-print(s)
 cnt = Counter(s)
 print(cnt)
 print(f'Введённая строка: {s}')
