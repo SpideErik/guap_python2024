@@ -1,0 +1,27 @@
+body {
+    background-image: url("back.jpg");
+}
+
+.page {
+    margin-top: 10%;
+    top: 250px;
+}
+
+.head {
+    color: gray;
+    background: black;
+    width: 100%;
+    text-align: center;
+}
+
+.head1 {
+    color: gray;
+    width: 100%;
+    text-align: center;
+}
+
+.form {
+    vertical-align: center;
+    width: 100%;
+    text-align: center;
+}
