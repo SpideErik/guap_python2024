@@ -1,0 +1,48 @@
+.z1 {
+    height: 33vh;
+    width: 100vw;
+    background-image: url("bg1.png");
+}
+
+.z2 {
+    height: 33vh;
+    width: 100vw;
+    background-image: url("bg2.png");
+}
+
+.z3 {
+    height: 33vh;
+    width: 100vw;
+    background-image: url("bg3.png");
+}
+
+.zh {
+    font-size: 40px;
+    color: white;
+    text-align: center;
+}
+
+.zc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.zi {
+    height: 25vh;
+}
+
+.ing {
+    display: flex;
+    align-items: center;
+}
+
+.ingi {
+    height: 12vh;
+    float: left;
+}
+
+.ingn {
+    float: right;
+}
