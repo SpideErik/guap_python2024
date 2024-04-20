@@ -1,0 +1,27 @@
+.p0 {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.p1 {
+    position: fixed;
+    top: 40vh;
+    height: 40vw;
+}
+
+.p2 {
+    position: fixed;
+    top: 40vh;
+    height: 40vw;
+    left: 70vw;
+}
+
+.p3 {
+    position: fixed;
+    width: 40vw;
+    left: 30vw;
+    top: 60vh;
+
+
+}
