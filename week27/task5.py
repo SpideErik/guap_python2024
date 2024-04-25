@@ -16,7 +16,8 @@ def print_letter(let, n):
     print(let_type(let))
 
 
-letters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+letters = ''.join(chr(i) if chr(i) != 'е' else 'её' for i in range(ord('а'), ord('я')+1))
+
 print('-' * 19)
 for n, i in enumerate(letters, 1):
     print_letter(i, n)
